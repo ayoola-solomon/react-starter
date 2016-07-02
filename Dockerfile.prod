@@ -1,0 +1,18 @@
+FROM node:6.2
+
+MAINTAINER Ayoola Solomon <ayoola.solomon89@gmail.com>
+
+USER root
+ENV HOST 0.0.0.0
+ENV PORT 4001
+
+COPY . /usr/src/app
+
+WORKDIR /usr/src/app
+
+RUN npm install && \
+    npm install express
+
+RUN NODE_ENV=production npm run build
+
+CMD ["./entrypoint.sh"]
