@@ -4,7 +4,7 @@ const initialState = {
   text: null
 };
 
-export default function leads(state = initialState, action) {
+export default function welcome(state = initialState, action) {
   switch (action.type) {
     case types.WELCOME:
       return {

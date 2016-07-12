@@ -3,15 +3,13 @@ import Helmet         from 'react-helmet';
 import { connect }    from 'react-redux';
 import * as action from '../actions/welcome';
 
-class Home extends Component {
-
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    welcome:  PropTypes.object.isRequired,
-  }
+export class Home extends Component {
 
   componentDidMount() {
-   this.props.dispatch(action.setWelcomeText())
+    let { text } = this.props.welcome;
+    if (!text) {
+      this.props.dispatch(action.setWelcomeText())
+    }
   }
 
   render() {
@@ -34,6 +32,11 @@ class Home extends Component {
       </section>
     );
   }
+}
+
+Home.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  welcome:  PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({ welcome: state.default.welcome });
